@@ -6,7 +6,7 @@ import bgImage from "../../assets/home-img.png";
 const Home = () => {
   return (
     <div
-      className="flex flex-col md:flex-row md:justify-between md:justify-between mt-0 md:mt-12 p-5"
+      className="flex flex-col md:flex-row md:justify-between md:justify-between mt-0 md:mt-12 p-5 mx-2 md:mx-20"
       style={{ minHeight: "100vh" }}
     >
       <div className="mr-6 text-center md:text-left">

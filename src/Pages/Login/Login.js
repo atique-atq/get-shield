@@ -46,7 +46,7 @@ const Login = () => {
 
   const saveUser = (name, email) => {
     const user = { name, email, role: "user" };
-    fetch("http://localhost:5000/users", {
+    fetch("https://get-shield-server.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

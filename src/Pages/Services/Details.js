@@ -8,16 +8,18 @@ import useUser from "../../hooks/useUser";
 const Details = () => {
   let details = useLoaderData();
     const { user } = useContext(AuthContext);
-      const [isUser, isUserLoading] = useUser(user?.email);
+
+    const [isUser, isUserLoading] = useUser(user?.email);
 
     const { data: bookings = [], isLoading, refetch } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/bookservice?email=${user?.email}`);
+      const res = await fetch(`https://get-shield-server.vercel.app/bookservice?email=${user?.email}`);
       const data = await res.json();
       return data;
     },
   });
+
 
   //checking if item booked?
   let bookedServices = bookings?.map(booking => booking.serviceName)
@@ -36,7 +38,7 @@ const Details = () => {
       };
       console.log('to be booked:', bookedService);
 
-      fetch("http://localhost:5000/bookservice", {
+      fetch("https://get-shield-server.vercel.app/bookservice", {
         method: "POST",
         headers: {
           "content-type": "application/json",

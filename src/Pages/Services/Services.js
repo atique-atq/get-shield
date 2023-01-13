@@ -11,7 +11,7 @@ const Services = () => {
   } = useQuery({
     queryKey: ["services"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/services`);
+      const res = await fetch(`https://get-shield-server.vercel.app/services`);
       const data = await res.json();
       return data;
     },
@@ -24,7 +24,7 @@ const Services = () => {
   refetch();
 
   return (
-    <section className="mt-12">
+    <section className="mt-12 mx-2 md:mx-8">
       {services?.length > 0 && (
         <div>
           {
