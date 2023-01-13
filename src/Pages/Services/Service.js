@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Service = ({ service }) => {
-  const { name, description, requiredTime, price } = service;
+  const { _id, name, description, requiredTime, price } = service;
   console.log("Name is:", name);
 
   return (
@@ -12,12 +13,12 @@ const Service = ({ service }) => {
       >
         <div className="card-body">
           <h2 className="card-title text-green-800">{name}</h2>
-          <div className="h-44 text-gray-700">
+          <div className="h-24 text-gray-500">
             <p title={description}>
-              {description?.length > 200 ? (
+              {description?.length > 130 ? (
                 <span className="hover:cursor-pointer">
                   {" "}
-                  {description.slice(0, 200)}....
+                  {description.slice(0, 130)}....
                 </span>
               ) : (
                 description
@@ -25,7 +26,9 @@ const Service = ({ service }) => {
             </p>
           </div>
           <div className="card-actions justify-end">
-            <button className="btn btn-info">Buy Now</button>
+            <Link to={`/service/${_id}`}>
+              <button className="btn btn-info">View Details</button>
+            </Link>
           </div>
         </div>
       </div>

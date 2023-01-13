@@ -7,6 +7,8 @@ import Services from "../../Pages/Services/Services";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import Addservice from "../../Pages/Admin/Addservice";
 import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Details from "../../Pages/Services/Details";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -38,6 +40,16 @@ const router = createBrowserRouter([
           <AdminRoute>
             <Addservice></Addservice>
           </AdminRoute>
+        ),
+      },
+      {
+        path: "/service/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/servicedetails/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <Details></Details>
+          </PrivateRoute>
         ),
       },
     ],

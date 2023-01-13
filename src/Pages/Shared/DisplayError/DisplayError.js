@@ -21,7 +21,7 @@ const DisplayError = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="mx-12 mt-12 flex justify-center items-center mb-8">
+      <div className="mx-4 md:mx-12 mt-20 flex justify-center items-center mb-72 md:mb-20">
         <div>
           <p className="text-red-600 text-center text-3xl font-mono font-bold">
             Page Not Found{" "}
@@ -29,7 +29,11 @@ const DisplayError = () => {
               {error.statusText || error.message}
             </small>
           </p>
-          <img className="w-5/12 mx-auto" src={notFoundImage} alt="" />
+          <img
+            className="w-9/12 md:w-8/12 mx-auto"
+            src={notFoundImage}
+            alt=""
+          />
         </div>
       </div>
       <Footer></Footer>
