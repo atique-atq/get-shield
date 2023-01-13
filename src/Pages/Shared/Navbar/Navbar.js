@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvier/AuthProvider";
-// import useAdmin from "../../../hooks/useAdmin";
-// import useUser from "../../../hooks/useUser";
-// import Loading from "../Loading/Loading";
+import useAdmin from "../../../hooks/useAdmin";
+import useUser from "../../../hooks/useUser";
 
 const Navbar = () => {
   const { user, logOut, loading } = useContext(AuthContext);
 
-  // const [isAdmin, isAdminLoading] = useAdmin(user?.email);
-  // const [isUser, isUserLoading] = useUser(user?.email);
+  const [isAdmin, isAdminLoading] = useAdmin(user?.email);
+  const [isUser, isUserLoading] = useUser(user?.email);
 
   const handleLogOut = () => {
     logOut().then().catch();
@@ -24,8 +23,8 @@ const Navbar = () => {
       {user?.email ? (
         <>
           <li className="font-bold text-gray-600">
-            {/* {isAdmin && <Link to="/addservice">Add Service</Link>}
-            {isAdmin && <Link to="/admindashboard">Dashboard</Link>} */}
+            {isAdmin && <Link to="/addservice">Add Service</Link>}
+            {isAdmin && <Link to="/admindashboard">Dashboard</Link>}
             <button
               onClick={handleLogOut}
               className="text-info  border border-info rounded-lg border-1 py-0 px-2 lg:mx-4"
