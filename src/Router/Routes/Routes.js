@@ -6,6 +6,7 @@ import Signup from "../../Pages/Signup/Signup";
 import Services from "../../Pages/Services/Services";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import Addservice from "../../Pages/Admin/Addservice";
+import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/",

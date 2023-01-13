@@ -43,12 +43,12 @@ const Addservice = () => {
   return (
     <div style={{ minHeight: "100vh" }}>
       <div className="w-full md:w-10/12 p-7 mx-auto">
-        <h2 className="text-2xl text-[#0DA5E9] md:text-center text-left font-bold">
+        <h2 className="text-2xl text-[#0DA5E9] md:text-center text-left font-bold mb-8">
           Add a Service
         </h2>
         <form
           onSubmit={handleSubmit(handleAddService)}
-          className="border shadow-lg py-12 px-3 md:px-6 mt-3 mx-auto"
+          className="border shadow-xl py-12 px-3 md:px-6 mt-3 mx-auto"
         >
           <div>
             <div className="form-control w-full p-2 mb-3">
@@ -96,7 +96,7 @@ const Addservice = () => {
               )}
             </div>
 
-            <div className="form-control w-full p-2 mb-3 flex flex-row justify-between">
+            <div className="form-control w-full p-2 mb-3 flex flex-row justify-between items-center">
               <div className="flex input-bordered rounded-none">
                 <label className="label">
                   {" "}
@@ -123,12 +123,14 @@ const Addservice = () => {
                 <label className="label">
                   {" "}
                   <span className="label-text font-semibold mr-1 md:mr-5">
-                    Price:
+                    Price in USD:
                   </span>
                 </label>
                 <input
                   type="text"
-                  {...register("price")}
+                  {...register("price", {
+                    required: "Price is required",
+                  })}
                   className="input input-bordered w-full rounded-none"
                 />
                 {errors.price && (
@@ -139,7 +141,7 @@ const Addservice = () => {
 
             <div className="flex justify-center items-center">
               <input
-                className="bg-[#0DA5E9] p-3 md:w-80 w-64 rounded-md mt-1 hover:cursor-pointer hover:bg-white"
+                className="bg-[#0DA5E9] p-3 md:w-80 w-64 rounded-md mt-1 hover:cursor-pointer hover:bg-green-700"
                 value="Add Service"
                 type="submit"
               />
