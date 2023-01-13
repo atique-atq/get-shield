@@ -50,7 +50,7 @@ const Footer = () => {
           <p>
             Copyright © 2023 - All right reserved by{" "}
             <span className="text-md font-semibold font-mono text-transparent bg-clip-text bg-gradient-to-br from-indigo-400 to-pink-600">
-              GetSheild Ltd
+              GetShield Ltd
             </span>{" "}
           </p>
         </div>

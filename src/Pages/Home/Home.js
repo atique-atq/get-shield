@@ -25,7 +25,7 @@ const Home = () => {
           We provide compliance and security solution for European digital and
           tech scaleups with cloud-only infrastructure.
         </h2>
-        <Link to="/addtask">
+        <Link to="/services">
           <div className="mt-4 w-44 text-xl font-bold text-info border border-2 border-info rounded-lg px-2 py-1 hover:bg-blue-500 hover:text-black hover:cursor-pointer">
             Explore now..
           </div>

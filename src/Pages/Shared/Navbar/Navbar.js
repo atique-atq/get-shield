@@ -1,9 +1,15 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvier/AuthProvider";
+// import useAdmin from "../../../hooks/useAdmin";
+// import useUser from "../../../hooks/useUser";
+// import Loading from "../Loading/Loading";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
+
+  // const [isAdmin, isAdminLoading] = useAdmin(user?.email);
+  // const [isUser, isUserLoading] = useUser(user?.email);
 
   const handleLogOut = () => {
     logOut().then().catch();
@@ -13,10 +19,13 @@ const Navbar = () => {
     <>
       <li className="font-bold text-gray-600 ml-3">
         <Link to="/">Home</Link>
+        <Link to="/services">Services</Link>
       </li>
       {user?.email ? (
         <>
-          <li className="font-bold">
+          <li className="font-bold text-gray-600">
+            {/* {isAdmin && <Link to="/addservice">Add Service</Link>}
+            {isAdmin && <Link to="/admindashboard">Dashboard</Link>} */}
             <button
               onClick={handleLogOut}
               className="text-info  border border-info rounded-lg border-1 py-0 px-2 lg:mx-4"
@@ -26,7 +35,7 @@ const Navbar = () => {
           </li>
           <li className="font-semibold">
             <button
-              className="btn bg-white border-0 hover:bg-green-200 py-0 px-2"
+              className="btn btn-ghost border-0 hover:bg-green-200 py-0 px-2"
               title={user?.displayName}
             >
               <div className="avatar">
@@ -38,7 +47,7 @@ const Navbar = () => {
           </li>
         </>
       ) : (
-        <li className="font-bold text-info py-0 px-2 border border-info rounded-lg border-1 lg:ml-10">
+        <li className="font-bold text-info py-0 border border-info rounded-3xl border-1 lg:ml-10">
           <Link to="/login">Login</Link>
         </li>
       )}
@@ -74,7 +83,7 @@ const Navbar = () => {
             </ul>
           </div>
           <a className="text-xl font-semibold font-mono text-transparent bg-clip-text bg-gradient-to-br from-indigo-400 to-pink-600">
-            GetSheild
+            GetShield
           </a>
         </div>
         <div className="navbar-end hidden lg:flex">

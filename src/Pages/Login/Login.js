@@ -18,8 +18,8 @@ const Login = () => {
     googleSignIn(googleProvider)
       .then((result) => {
         const user = result.user;
-
-        // saveUser(user.displayName, user.email);
+        saveUser(user.displayName, user.email);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -35,6 +35,7 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
+        navigate(from, { replace: true });
       })
       .catch((er) => {
         console.log("error:", er);
@@ -43,8 +44,23 @@ const Login = () => {
       });
   };
 
+  const saveUser = (name, email) => {
+    const user = { name, email, role: "user" };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("user saved!");
+      });
+  };
+
   return (
-    <div className="my-8">
+    <div className="my-8" style={{ minHeight: "100vh" }}>
       <>{loading && <Loading></Loading>}</>
       <div className="hero w-full my-5  rounded-lg">
         <div className="flex-col lg:flex-row items-center justify-center justify-items-center">
