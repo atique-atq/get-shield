@@ -10,12 +10,12 @@ const Details = () => {
     let answer = window.confirm("Want to Booked this Service?");
     if (answer) {
       const bookedService = {
-        serviceId,
-        serviceName,
-        clientName: user?.displayName,
+        serviceId: serviceId,
+        serviceName: serviceName,
         clientEmail: user?.email,
         creationTime: new Date(),
       };
+      console.log('to be booked:', bookedService);
 
       fetch("http://localhost:5000/bookservice", {
         method: "POST",
@@ -48,7 +48,7 @@ const Details = () => {
           </p>
           <div className="card-actions justify-end">
             <button
-              onClick={() => handleBuyService(details?._id, details?._name)}
+              onClick={() => handleBuyService(details?._id, details?.name)}
               className="btn btn-lg btn-info"
             >
               Book Now

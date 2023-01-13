@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const Service = ({ service }) => {
   const { _id, name, description, requiredTime, price } = service;
-  console.log("Name is:", name);
 
   return (
     <div>
