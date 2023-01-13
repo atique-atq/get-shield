@@ -3,10 +3,12 @@ import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvier/AuthProvider";
+import useUser from "../../hooks/useUser";
 
 const Details = () => {
   let details = useLoaderData();
     const { user } = useContext(AuthContext);
+      const [isUser, isUserLoading] = useUser(user?.email);
 
     const { data: bookings = [], isLoading, refetch } = useQuery({
     queryKey: ["bookings"],
@@ -50,7 +52,7 @@ const Details = () => {
     }
   };
   return (
-    <div className="grid grid-cols-3 gap-4" style={{ minHeight: "100vh" }}>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4" style={{ minHeight: "100vh" }}>
       <div
         className="flex flex-row justify-center mt-20 mb-10 col-span-2">
         <div className="card w-11/12 md:w-10/12 h-96 bg-[#c9f2f5] text-primary-content shadow-2xl">
@@ -65,29 +67,32 @@ const Details = () => {
               Price : {details?.price}
             </p>
             <div className="card-actions justify-end">
-
-          {
-            isThisBooked ? (
-              <>
-                <button
-                      onClick={() => handleBuyService(details?._id, details?.name)}
-                      className="btn btn-info" disabled>
-                    Booked Successfully
-                </button>
-              </>
-            ) : (
-              <button
-                      onClick={() => handleBuyService(details?._id, details?.name)}
-                      className="btn btn-lg btn-info">
-                    Book Now
-                </button>
-            )}
+              {
+                isUser && <div>
+                  {
+                    isThisBooked ? (
+                      <>
+                        <button
+                              onClick={() => handleBuyService(details?._id, details?.name)}
+                              className="btn btn-info" disabled>
+                            Booked Successfully
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                              onClick={() => handleBuyService(details?._id, details?.name)}
+                              className="btn btn-lg btn-info">
+                            Book Now
+                        </button>
+                    )}
+                </div>
+              }
             </div>
           </div>
         </div>
       </div>
 
-      <div  className="mt-20 mb-10 h-96 p-4">
+      <div  className="mt-2 md:mt-20 mb-10 h-96 p-4">
         {
           bookedServices?.length > 0 ? (
             <div className="font-bold">
@@ -104,7 +109,9 @@ const Details = () => {
             </div>
           ):
           <>
-          <h1>You Don't have book any services yet</h1>
+            {
+              isUser && <h1>You Don't have book any services yet</h1>
+            }
           </>
             
         }
